@@ -66,18 +66,18 @@ namespace project2
                 string sbYear = "Year";
                 string sbQuarterBack = "Quarter Back";
                 string sbCoachOne = "Coach";
-                string sbMVP = "Most Valuable Player";
+                string mvp = "Most Valuable Player";
                 string sbPointDif = "Point Difference";
                 string sbCity = "City";
                 string sbState = "State";
                 string sbStadium = "Stadium";
 
-                writer.WriteLine("{0,-8}{1,-21}{2,-5}{3,-27}{4,-16}{5,-26}{6,-7}", sbNum, sbWinner, sbYear, sbQuarterBack, sbCoachOne, sbMVP, sbPointDif);
+                writer.WriteLine("{0,-8}{1,-21}{2,-5}{3,-27}{4,-16}{5,-26}{6,-7}", sbNum, sbWinner, sbYear, sbQuarterBack, sbCoachOne, mvp, sbPointDif);
                 writer.WriteLine(new string('-', 110));
                 foreach (SuperBowl winner in sbList)
                 {
                     double ptDifference = winner.winnerPoints - winner.loserPoints;
-                    writer.WriteLine($"{winner.sb,-8}{winner.winner,-20} '{winner.date.Substring(winner.date.Length - 2),-3} {winner.winnerQB,-26} {winner.winnerCoach,-15} {winner.MVP,-25} {ptDifference,-7}");
+                    writer.WriteLine($"{winner.sb,-8}{winner.winner,-20} '{winner.date.Substring(winner.date.Length - 2),-3} {winner.winnerQB,-26} {winner.winnerCoach,-15} {winner.mvp,-25} {ptDifference,-7}");
                 }
 
                 var topAttendance = (from superBowl in sbList
@@ -116,7 +116,7 @@ namespace project2
 
                 writer.WriteLine("These are the players who have won MVP multiple times: ");
                 var mvpGroup = from superBowl in sbList
-                               group superBowl by superBowl.MVP into mvps
+                               group superBowl by superBowl.mvp into mvps
                                where mvps.Count() > 1
                                orderby mvps.Key
                                select mvps;
@@ -184,9 +184,9 @@ namespace project2
             }
             else
             {
-                Console.WriteLine("There is no file by that name... please try again!");
+                Console.WriteLine("There is no file by that name.");
             }
-            Console.WriteLine("Please check the directory of file, 'Super_Bowl_Project.csv'.Then, you may press <ENTER> to quit.");
+            Console.WriteLine("Please check the directory again for 'Super_Bowl_Project.csv'.");
             Console.ReadLine();
         }
     }
